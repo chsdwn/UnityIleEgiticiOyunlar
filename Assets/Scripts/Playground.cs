@@ -6,17 +6,13 @@ public class Playground : MonoBehaviour
 {
     public GameObject cube;
 
-    float min = -1f;
-    float max = 1f;
-    float time = 0f;
+    float minAngle = 0f;
+    float maxAngle = 90f;
 
     private void Update()
     {
-        float x = Mathf.Sin(time * 5f);
-        float xPos = Mathf.Clamp(x, min, max);
+        float angle = Mathf.LerpAngle(minAngle, maxAngle, Time.time);
 
-        cube.transform.position = new Vector3(xPos, 0, 0);
-
-        time += Time.deltaTime;
+        cube.transform.eulerAngles = new Vector3(angle, 0, 0);
     }
 }
