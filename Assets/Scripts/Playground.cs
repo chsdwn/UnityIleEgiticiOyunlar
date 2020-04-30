@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Playground : MonoBehaviour
 {
-    public GameObject cubePrefab;
+    [SerializeField]
+    private GameObject cube;
 
-    void Start()
+    private void Start()
     {
-        // Runs CreateCube method after 2 seconds
-        Invoke("CreateCube", 2f);
+        StartCoroutine(Disable());
     }
 
-    private void CreateCube()
+    IEnumerator Disable()
     {
-        Instantiate(cubePrefab, transform.position, Quaternion.identity);
+        // Waits 1 frame
+        // yield return null;
+
+        // Waits 3 seconds then runs the code below it.
+        yield return new WaitForSeconds(3f);
+        cube.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+        cube.SetActive(true);
     }
 }
