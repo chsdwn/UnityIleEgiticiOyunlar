@@ -5,14 +5,12 @@ using UnityEngine;
 public class Playground : MonoBehaviour
 {
     public GameObject cube;
+    public GameObject target;
 
-    float minAngle = 0f;
-    float maxAngle = 90f;
+    float speed = 10f;
 
     private void Update()
     {
-        float angle = Mathf.LerpAngle(minAngle, maxAngle, Time.time);
-
-        cube.transform.eulerAngles = new Vector3(angle, 0, 0);
+        cube.transform.position = Vector3.MoveTowards(cube.transform.position, target.transform.position, Time.deltaTime * speed);
     }
 }
