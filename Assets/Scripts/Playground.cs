@@ -6,24 +6,17 @@ public class Playground : MonoBehaviour
 {
     public GameObject cube;
 
-    float min = -1.0f;
-    float max = 1.0f;
-    float t = 0f;
+    float min = -1f;
+    float max = 1f;
+    float time = 0f;
 
     private void Update()
     {
-        cube.transform.position = new Vector3(Mathf.Lerp(min, max, t), 0, 0);
-        t += 0.5f * Time.deltaTime;
+        float x = Mathf.Sin(time * 5f);
+        float xPos = Mathf.Clamp(x, min, max);
 
-        if (t > 1.0f)
-        {
-            float temp = max;
-            max = min;
-            min = temp;
-            t = 0f;
-        }
+        cube.transform.position = new Vector3(xPos, 0, 0);
 
-        // a = Mathf.Lerp(0f, 100f, 0.5f);
-        // Debug.Log(a); // 50, 75, 87.5, 93.75 ...
+        time += Time.deltaTime;
     }
 }
