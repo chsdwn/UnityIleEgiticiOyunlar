@@ -6,17 +6,12 @@ public class Playground : MonoBehaviour
 {
     public GameObject cube;
 
-    [SerializeField]
-    private int width = 1;
-    [SerializeField]
-    private float speed = 0.1f;
+    private int value = -5;
 
-    private void Update()
+    private void Start()
     {
-        float x = Mathf.Cos(Time.time * speed) * width;
-        float y = Mathf.Sin(Time.time * speed) * width;
-        float z = transform.position.z;
-
-        cube.transform.position = new Vector3(x, y, z);
+        Debug.Log(Mathf.Abs(value));
+        Debug.Log(Mathf.Abs(10 - 20));
+        Debug.Log(Mathf.Abs(20 - 10));
     }
 }
