@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class Playground : MonoBehaviour
 {
+    public GameObject cube;
+
     [SerializeField]
-    private GameObject cube;
+    private int width = 1;
+    [SerializeField]
+    private float speed = 0.1f;
 
-    private void Start()
+    private void Update()
     {
-        StartCoroutine(Disable());
-    }
+        float x = Mathf.Cos(Time.time * speed) * width;
+        float y = Mathf.Sin(Time.time * speed) * width;
+        float z = transform.position.z;
 
-    IEnumerator Disable()
-    {
-        // Waits 1 frame
-        // yield return null;
-
-        // Waits 3 seconds then runs the code below it.
-        yield return new WaitForSeconds(3f);
-        cube.SetActive(false);
-
-        yield return new WaitForSeconds(2f);
-        cube.SetActive(true);
+        cube.transform.position = new Vector3(x, y, z);
     }
 }
