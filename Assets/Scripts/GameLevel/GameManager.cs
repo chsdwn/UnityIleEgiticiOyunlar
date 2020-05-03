@@ -12,11 +12,15 @@ public class GameManager : MonoBehaviour
     private GameObject tilePrefab;
     [SerializeField]
     private Transform tiles;
+    [SerializeField]
+    private Transform questionPanel;
     private GameObject[] tilesArray = new GameObject[SIZE];
 
     // Start is called before the first frame update
     void Start()
     {
+        questionPanel.GetComponent<RectTransform>().localScale = Vector3.zero;
+
         CreateTiles();
     }
 
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
 
         InitializeTileValues();
         StartCoroutine(DoFadeCoroutine());
+        Invoke("ShowQuestionPanel", 2f);
     }
 
     IEnumerator DoFadeCoroutine()
@@ -50,5 +55,10 @@ public class GameManager : MonoBehaviour
 
             tile.transform.GetChild(0).GetComponent<Text>().text = rnd.ToString();
         }
+    }
+
+    void ShowQuestionPanel()
+    {
+        questionPanel.GetComponent<RectTransform>().DOScale(1f, 0.3f).SetEase(Ease.OutBack);
     }
 }
