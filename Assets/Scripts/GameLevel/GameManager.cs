@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
             tilesArray[i] = tile;
         }
 
+        InitializeTileValues();
         StartCoroutine(DoFadeCoroutine());
     }
 
@@ -37,6 +39,16 @@ public class GameManager : MonoBehaviour
             tile.GetComponent<CanvasGroup>().DOFade(1, 0.07f);
 
             yield return new WaitForSeconds(0.07f);
+        }
+    }
+
+    void InitializeTileValues()
+    {
+        foreach (var tile in tilesArray)
+        {
+            int rnd = Random.Range(1, 13);
+
+            tile.transform.GetChild(0).GetComponent<Text>().text = rnd.ToString();
         }
     }
 }
