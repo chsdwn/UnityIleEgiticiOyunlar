@@ -1065,6 +1065,12 @@ MonoBehaviour:
   tiles: {fileID: 1551918788}
   questionPanel: {fileID: 1372768079}
   questionText: {fileID: 1436551098}
+  tileSprites:
+  - {fileID: 21300000, guid: b8329bb08c9b0314da25a63194e20563, type: 3}
+  - {fileID: 21300000, guid: 65456e0cb06b6254f96867c4d9ba2da1, type: 3}
+  - {fileID: 21300000, guid: 82b64a485707e94429b4f77d7a388f01, type: 3}
+  - {fileID: 21300000, guid: 6c7c6659e2493b349afc4d798c5e3f78, type: 3}
+  - {fileID: 21300000, guid: 578f6656425773c408264c39529457ba, type: 3}
 --- !u!4 &1540342715
 Transform:
   m_ObjectHideFlags: 0

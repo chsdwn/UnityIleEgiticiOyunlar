@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private Text questionText;
     int questionIndex;
 
+    [SerializeField]
+    private Sprite[] tileSprites;
+
     List<int> divisionValues = new List<int>();
     int divisor;
     int dividend;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     HeartsManager heartsManager;
     ScoreManager scoreManager;
+    GameObject pressedTile;
 
     private void Awake()
     {
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < SIZE; i++)
         {
             GameObject tile = Instantiate(tilePrefab, tiles);
+            tile.transform.GetChild(1).GetComponent<Image>().sprite = tileSprites[Random.Range(0, tileSprites.Length)];
             tile.transform.GetComponent<Button>().onClick.AddListener(() => TilePressed());
             tilesArray[i] = tile;
         }
@@ -83,6 +88,12 @@ public class GameManager : MonoBehaviour
                 .text
             );
 
+            pressedTile = UnityEngine
+                .EventSystems
+                .EventSystem
+                .current
+                .currentSelectedGameObject;
+
             CheckAnswer();
         }
     }
@@ -91,6 +102,10 @@ public class GameManager : MonoBehaviour
     {
         if (tileValue == result)
         {
+            pressedTile.transform.GetChild(1).GetComponent<Image>().enabled = true;
+            pressedTile.transform.GetChild(0).GetComponent<Text>().text = "";
+            pressedTile.transform.GetComponent<Button>().interactable = false;
+
             scoreManager.IncreaseScore(difficult);
 
             divisionValues.RemoveAt(questionIndex);
