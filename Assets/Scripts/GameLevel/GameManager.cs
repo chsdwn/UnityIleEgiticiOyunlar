@@ -29,7 +29,10 @@ public class GameManager : MonoBehaviour
 
     int heartsCount;
 
+    string difficult;
+
     HeartsManager heartsManager;
+    ScoreManager scoreManager;
 
     private void Awake()
     {
@@ -37,6 +40,8 @@ public class GameManager : MonoBehaviour
 
         heartsManager = Object.FindObjectOfType<HeartsManager>();
         heartsManager.CheckHearts(heartsCount);
+
+        scoreManager = Object.FindObjectOfType<ScoreManager>();
     }
 
 
@@ -85,7 +90,7 @@ public class GameManager : MonoBehaviour
     void CheckAnswer()
     {
         if (tileValue == result)
-            Debug.Log("true");
+            scoreManager.IncreaseScore(difficult);
         else
         {
             heartsCount--;
@@ -128,6 +133,13 @@ public class GameManager : MonoBehaviour
         questionIndex = Random.Range(0, divisionValues.Count);
         result = divisionValues[questionIndex];
         dividend = divisor * result;
+
+        if (dividend <= 40)
+            difficult = "easy";
+        else if (dividend > 40 && dividend <= 80)
+            difficult = "normal";
+        else
+            difficult = "hard";
 
         questionText.text = $"{dividend.ToString()} : {divisor.ToString()}";
     }
