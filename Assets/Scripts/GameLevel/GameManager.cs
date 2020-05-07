@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private Transform tiles;
     private GameObject[] tilesArray = new GameObject[SIZE];
     int tileValue;
+    bool isQuestionAsked;
 
     [SerializeField]
     private Transform questionPanel;
@@ -49,17 +50,18 @@ public class GameManager : MonoBehaviour
 
     void TilePressed()
     {
-        tileValue = int.Parse(
-            UnityEngine
-            .EventSystems
-            .EventSystem
-            .current
-            .currentSelectedGameObject
-            .transform
-            .GetChild(0)
-            .GetComponent<Text>()
-            .text
-        );
+        if (isQuestionAsked)
+            tileValue = int.Parse(
+                UnityEngine
+                .EventSystems
+                .EventSystem
+                .current
+                .currentSelectedGameObject
+                .transform
+                .GetChild(0)
+                .GetComponent<Text>()
+                .text
+            );
     }
 
     IEnumerator DoFadeCoroutine()
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
     void ShowQuestionPanel()
     {
         AskQuestion();
+        isQuestionAsked = true;
         questionPanel.GetComponent<RectTransform>().DOScale(1f, 0.3f).SetEase(Ease.OutBack);
     }
 
