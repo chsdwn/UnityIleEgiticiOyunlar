@@ -110,13 +110,24 @@ public class GameManager : MonoBehaviour
 
             divisionValues.RemoveAt(questionIndex);
 
-            ShowQuestionPanel();
+            if (divisionValues.Count > 0)
+                ShowQuestionPanel();
+            else
+                GameOver();
         }
         else
         {
             heartsCount--;
             heartsManager.CheckHearts(heartsCount);
         }
+
+        if (heartsCount <= 0)
+            GameOver();
+    }
+
+    void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 
     IEnumerator DoFadeCoroutine()
