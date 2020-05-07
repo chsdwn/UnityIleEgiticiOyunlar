@@ -12,16 +12,18 @@ public class GameManager : MonoBehaviour
     private GameObject tilePrefab;
     [SerializeField]
     private Transform tiles;
+    private GameObject[] tilesArray = new GameObject[SIZE];
+    int tileValue;
+
     [SerializeField]
     private Transform questionPanel;
     [SerializeField]
     private Text questionText;
-    private GameObject[] tilesArray = new GameObject[SIZE];
+    int questionIndex;
 
     List<int> divisionValues = new List<int>();
     int divisor;
     int dividend;
-    int questionIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +38,28 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < SIZE; i++)
         {
             GameObject tile = Instantiate(tilePrefab, tiles);
+            tile.transform.GetComponent<Button>().onClick.AddListener(() => TilePressed());
             tilesArray[i] = tile;
         }
 
         InitializeTileValues();
         StartCoroutine(DoFadeCoroutine());
         Invoke("ShowQuestionPanel", 2f);
+    }
+
+    void TilePressed()
+    {
+        tileValue = int.Parse(
+            UnityEngine
+            .EventSystems
+            .EventSystem
+            .current
+            .currentSelectedGameObject
+            .transform
+            .GetChild(0)
+            .GetComponent<Text>()
+            .text
+        );
     }
 
     IEnumerator DoFadeCoroutine()
