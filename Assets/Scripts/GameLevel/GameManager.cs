@@ -90,7 +90,13 @@ public class GameManager : MonoBehaviour
     void CheckAnswer()
     {
         if (tileValue == result)
+        {
             scoreManager.IncreaseScore(difficult);
+
+            divisionValues.RemoveAt(questionIndex);
+
+            ShowQuestionPanel();
+        }
         else
         {
             heartsCount--;
