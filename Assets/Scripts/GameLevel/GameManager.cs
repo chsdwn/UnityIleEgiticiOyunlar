@@ -14,7 +14,14 @@ public class GameManager : MonoBehaviour
     private Transform tiles;
     [SerializeField]
     private Transform questionPanel;
+    [SerializeField]
+    private Text questionText;
     private GameObject[] tilesArray = new GameObject[SIZE];
+
+    List<int> divisionValues = new List<int>();
+    int divisor;
+    int dividend;
+    int questionIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +59,7 @@ public class GameManager : MonoBehaviour
         foreach (var tile in tilesArray)
         {
             int rnd = Random.Range(1, 13);
+            divisionValues.Add(rnd);
 
             tile.transform.GetChild(0).GetComponent<Text>().text = rnd.ToString();
         }
@@ -59,6 +67,17 @@ public class GameManager : MonoBehaviour
 
     void ShowQuestionPanel()
     {
+        AskQuestion();
         questionPanel.GetComponent<RectTransform>().DOScale(1f, 0.3f).SetEase(Ease.OutBack);
+    }
+
+    void AskQuestion()
+    {
+        divisor = Random.Range(2, 11);
+
+        questionIndex = Random.Range(0, divisionValues.Count);
+        dividend = divisor * divisionValues[questionIndex];
+
+        questionText.text = $"{dividend.ToString()} : {divisor.ToString()}";
     }
 }

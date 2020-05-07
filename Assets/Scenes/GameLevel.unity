@@ -716,7 +716,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 72:12
+  m_Text: 
 --- !u!222 &1436551099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -758,6 +758,7 @@ MonoBehaviour:
     type: 3}
   tiles: {fileID: 1551918788}
   questionPanel: {fileID: 1372768079}
+  questionText: {fileID: 1436551098}
 --- !u!4 &1540342715
 Transform:
   m_ObjectHideFlags: 0
