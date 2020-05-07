@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     List<int> divisionValues = new List<int>();
     int divisor;
     int dividend;
+    int result;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     void TilePressed()
     {
         if (isQuestionAsked)
+        {
             tileValue = int.Parse(
                 UnityEngine
                 .EventSystems
@@ -62,6 +64,17 @@ public class GameManager : MonoBehaviour
                 .GetComponent<Text>()
                 .text
             );
+
+            CheckAnswer();
+        }
+    }
+
+    void CheckAnswer()
+    {
+        if (tileValue == result)
+            Debug.Log("true");
+        else
+            Debug.Log("false");
     }
 
     IEnumerator DoFadeCoroutine()
@@ -97,7 +110,8 @@ public class GameManager : MonoBehaviour
         divisor = Random.Range(2, 11);
 
         questionIndex = Random.Range(0, divisionValues.Count);
-        dividend = divisor * divisionValues[questionIndex];
+        result = divisionValues[questionIndex];
+        dividend = divisor * result;
 
         questionText.text = $"{dividend.ToString()} : {divisor.ToString()}";
     }
