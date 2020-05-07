@@ -27,6 +27,19 @@ public class GameManager : MonoBehaviour
     int dividend;
     int result;
 
+    int heartsCount;
+
+    HeartsManager heartsManager;
+
+    private void Awake()
+    {
+        heartsCount = 3;
+
+        heartsManager = Object.FindObjectOfType<HeartsManager>();
+        heartsManager.CheckHearts(heartsCount);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +87,10 @@ public class GameManager : MonoBehaviour
         if (tileValue == result)
             Debug.Log("true");
         else
-            Debug.Log("false");
+        {
+            heartsCount--;
+            heartsManager.CheckHearts(heartsCount);
+        }
     }
 
     IEnumerator DoFadeCoroutine()
