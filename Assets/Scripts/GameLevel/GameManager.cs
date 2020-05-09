@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverPanel;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip buttonSound;
+
     List<int> divisionValues = new List<int>();
     int divisor;
     int dividend;
@@ -44,6 +49,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         heartsCount = 3;
+
+        audioSource = GetComponent<AudioSource>();
 
         gameOverPanel.GetComponent<RectTransform>().localScale = Vector3.zero;
 
@@ -81,6 +88,8 @@ public class GameManager : MonoBehaviour
     {
         if (isQuestionAsked)
         {
+            audioSource.PlayOneShot(buttonSound);
+
             tileValue = int.Parse(
                 UnityEngine
                 .EventSystems
