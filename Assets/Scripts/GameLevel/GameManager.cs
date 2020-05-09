@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Sprite[] tileSprites;
 
+    [SerializeField]
+    private GameObject gameOverPanel;
+
     List<int> divisionValues = new List<int>();
     int divisor;
     int dividend;
@@ -41,6 +44,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         heartsCount = 3;
+
+        gameOverPanel.GetComponent<RectTransform>().localScale = Vector3.zero;
 
         heartsManager = Object.FindObjectOfType<HeartsManager>();
         heartsManager.CheckHearts(heartsCount);
@@ -127,7 +132,8 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("Game Over");
+        isQuestionAsked = false;
+        gameOverPanel.GetComponent<RectTransform>().DOScale(1, 0.3f).SetEase(Ease.OutBack);
     }
 
     IEnumerator DoFadeCoroutine()
