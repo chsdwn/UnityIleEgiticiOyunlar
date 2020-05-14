@@ -16,7 +16,10 @@ public class TimerManager : MonoBehaviour
     {
         timer = 90;
         isTimerRun = true;
+    }
 
+    public void StartTimer()
+    {
         StartCoroutine(TimerRoutine());
     }
 

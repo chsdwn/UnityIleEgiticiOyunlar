@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text bottomTxt;
 
+    TimerManager timerManager;
+
+    private void Awake()
+    {
+        timerManager = Object.FindObjectOfType<TimerManager>();
+    }
 
     void Start()
     {
@@ -39,7 +45,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        catchPointsImage.GetComponent<CanvasGroup>().DOFade(0, 0.2f);
+
         topTxt.text = "(30 + 20) - 63";
         bottomTxt.text = "(10 - 40) + 13";
+
+        timerManager.StartTimer();
     }
 }
