@@ -11,6 +11,13 @@ public class CountdownManager : MonoBehaviour
     [SerializeField]
     private Text countdownTxt;
 
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = Object.FindObjectOfType<GameManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +39,7 @@ public class CountdownManager : MonoBehaviour
         }
 
         StopAllCoroutines();
+
+        gameManager.StartGame();
     }
 }
