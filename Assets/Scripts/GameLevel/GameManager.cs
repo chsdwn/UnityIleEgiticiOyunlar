@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
 
     TimerManager timerManager;
 
+    int questionCounter;
+    int questionIndex;
+    int topValue;
+    int bottomValue;
+    int largeInt;
+
     private void Awake()
     {
         timerManager = Object.FindObjectOfType<TimerManager>();
@@ -28,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        questionCounter = 0;
+        questionIndex = 0;
+
         topTxt.text = "";
         bottomTxt.text = "";
 
@@ -47,9 +56,45 @@ public class GameManager : MonoBehaviour
     {
         catchPointsImage.GetComponent<CanvasGroup>().DOFade(0, 0.2f);
 
-        topTxt.text = "(30 + 20) - 63";
-        bottomTxt.text = "(10 - 40) + 13";
+        PrintQuestion();
 
         timerManager.StartTimer();
+    }
+
+    void PrintQuestion()
+    {
+        if (questionCounter < 5)
+            questionIndex = 1;
+
+        switch (questionIndex)
+        {
+            case 1:
+                FirstQuestion();
+                break;
+        }
+    }
+
+    void FirstQuestion()
+    {
+        int rnd = Random.Range(0, 50);
+
+        if (rnd <= 25)
+        {
+            topValue = Random.Range(2, 50);
+            bottomValue = topValue + Random.Range(1, 10);
+        }
+        else
+        {
+            topValue = Random.Range(2, 50);
+            bottomValue = topValue + Random.Range(1, 10);
+        }
+
+        if (topValue > bottomValue)
+            largeInt = topValue;
+        else
+            largeInt = bottomValue;
+
+        topTxt.text = topValue.ToString();
+        bottomTxt.text = bottomValue.ToString();
     }
 }
