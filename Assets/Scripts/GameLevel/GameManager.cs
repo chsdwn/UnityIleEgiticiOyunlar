@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject scoreTimePanel;
     [SerializeField]
-    private GameObject catchPointsImage;
+    private GameObject catchPointsImage, selectBiggerNumberImage;
     [SerializeField]
     private GameObject topRect;
     [SerializeField]
@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        catchPointsImage.GetComponent<CanvasGroup>().DOFade(0, 0.2f);
+        catchPointsImage.GetComponent<CanvasGroup>().DOFade(0, 1f);
+        selectBiggerNumberImage.GetComponent<CanvasGroup>().DOFade(1, 1f);
 
         PrintQuestion();
 
