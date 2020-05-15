@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         else
         {
             topValue = Random.Range(2, 50);
-            bottomValue = topValue + Random.Range(1, 10);
+            bottomValue = Mathf.Abs(topValue - Random.Range(1, 10));
         }
 
         if (topValue > bottomValue)
