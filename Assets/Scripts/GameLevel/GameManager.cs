@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     int topValue;
     int bottomValue;
     int largeInt;
+    int btnValue;
 
     private void Awake()
     {
@@ -97,5 +98,26 @@ public class GameManager : MonoBehaviour
 
         topTxt.text = topValue.ToString();
         bottomTxt.text = bottomValue.ToString();
+    }
+
+    public void SelectAnswer(string btnName)
+    {
+        if (btnName == "topBtn")
+        {
+            btnValue = topValue;
+        }
+        else if (btnName == "bottomBtn")
+        {
+            btnValue = bottomValue;
+        }
+
+        if (btnValue == largeInt)
+        {
+            Debug.Log("true");
+        }
+        else
+        {
+            Debug.Log("false");
+        }
     }
 }
