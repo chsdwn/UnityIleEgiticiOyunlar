@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private Text bottomTxt;
 
     TimerManager timerManager;
+    CirclesManager circlesManager;
 
     int questionCounter;
     int questionIndex;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         timerManager = Object.FindObjectOfType<TimerManager>();
+        circlesManager = Object.FindObjectOfType<CirclesManager>();
     }
 
     void Start()
@@ -113,7 +115,8 @@ public class GameManager : MonoBehaviour
 
         if (btnValue == largeInt)
         {
-            Debug.Log("true");
+            circlesManager.VisibleCircle(questionCounter % 5);
+            questionCounter++;
         }
         else
         {

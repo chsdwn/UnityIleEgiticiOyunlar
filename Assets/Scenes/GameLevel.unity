@@ -2318,6 +2318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2043880502}
+  - component: {fileID: 2043880503}
   m_Layer: 5
   m_Name: LightCircles
   m_TagString: Untagged
@@ -2349,6 +2350,24 @@ RectTransform:
   m_AnchoredPosition: {x: 154.9, y: -31.300003}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2043880503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043880501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c96f22c43a6a84f94caecb16b9aefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circles:
+  - {fileID: 929722132}
+  - {fileID: 406497395}
+  - {fileID: 907763572}
+  - {fileID: 300627575}
+  - {fileID: 1290971834}
 --- !u!1 &2125375889
 GameObject:
   m_ObjectHideFlags: 0
