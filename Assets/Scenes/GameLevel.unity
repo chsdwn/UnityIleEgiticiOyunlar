@@ -3312,6 +3312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357266538}
   - component: {fileID: 1357266539}
+  - component: {fileID: 1357266540}
   m_Layer: 5
   m_Name: ResultPanel
   m_TagString: Untagged
@@ -3354,6 +3355,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357266537}
   m_CullTransparentMesh: 0
+--- !u!114 &1357266540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357266537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872257b9b77564c40a1ddc9ffdf967dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctCountTxt: {fileID: 888034291}
+  wrongCountTxt: {fileID: 1003824967}
+  scoreTxt: {fileID: 861192914}
 --- !u!1 &1384013713
 GameObject:
   m_ObjectHideFlags: 0

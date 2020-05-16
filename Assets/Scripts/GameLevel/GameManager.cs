@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private Text scoreTxt;
 
     CirclesManager circlesManager;
+    ResultManager resultManager;
     TimerManager timerManager;
     TrueFalseManager trueFalseManager;
 
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
     int btnValue;
     int score = 0;
     int scoreIncrement;
+    int correctCount;
+    int wrongCount;
 
     private void Awake()
     {
@@ -281,11 +284,15 @@ public class GameManager : MonoBehaviour
 
             scoreTxt.text = score.ToString();
 
+            correctCount++;
+
             PrintQuestion();
         }
         else
         {
             trueFalseManager.VisibleIcon(false);
+
+            wrongCount++;
 
             OnWrongAnswer();
             PrintQuestion();
@@ -310,5 +317,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         resultPanel.SetActive(true);
+
+        resultManager = Object.FindObjectOfType<ResultManager>();
+        resultManager.ShowResult(correctCount, wrongCount, score);
     }
 }
