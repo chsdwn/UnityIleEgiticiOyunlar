@@ -19,8 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text bottomTxt;
 
-    TimerManager timerManager;
     CirclesManager circlesManager;
+    TimerManager timerManager;
+    TrueFalseManager trueFalseManager;
 
     int questionCounter;
     int questionIndex;
@@ -31,8 +32,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        timerManager = Object.FindObjectOfType<TimerManager>();
         circlesManager = Object.FindObjectOfType<CirclesManager>();
+        timerManager = Object.FindObjectOfType<TimerManager>();
+        trueFalseManager = Object.FindObjectOfType<TrueFalseManager>();
     }
 
     void Start()
@@ -119,6 +121,12 @@ public class GameManager : MonoBehaviour
             largeInt = topValue;
         else
             largeInt = bottomValue;
+
+        if (topValue == bottomValue)
+        {
+            FirstQuestion();
+            return;
+        }
 
         topTxt.text = topValue.ToString();
         bottomTxt.text = bottomValue.ToString();
@@ -237,6 +245,8 @@ public class GameManager : MonoBehaviour
 
         if (btnValue == largeInt)
         {
+            trueFalseManager.VisibleIcon(true);
+
             circlesManager.VisibleCircle(questionCounter % 5);
             questionCounter++;
 
@@ -244,6 +254,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            trueFalseManager.VisibleIcon(false);
+
             OnWrongAnswer();
             PrintQuestion();
         }
