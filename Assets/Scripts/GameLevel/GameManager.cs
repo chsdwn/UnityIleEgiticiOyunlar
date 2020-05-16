@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private GameObject bottomRect;
     [SerializeField]
     private Text bottomTxt;
+    [SerializeField]
+    private GameObject pausePanel;
 
     CirclesManager circlesManager;
     TimerManager timerManager;
@@ -269,5 +271,10 @@ public class GameManager : MonoBehaviour
             questionCounter = 0;
 
         circlesManager.InvisibleCircles();
+    }
+
+    public void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
     }
 }
