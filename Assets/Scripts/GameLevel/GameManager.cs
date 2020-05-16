@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
             questionIndex = 4;
         else if (questionCounter >= 20 && questionCounter < 25)
             questionIndex = 5;
+        else
+            questionIndex = Random.Range(1, 6);
 
         switch (questionIndex)
         {
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     void FirstQuestion()
     {
-        int rnd = Random.Range(0, 50);
+        int rnd = Random.Range(1, 50);
 
         if (rnd <= 25)
         {
