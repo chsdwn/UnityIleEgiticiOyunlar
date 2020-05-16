@@ -244,7 +244,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("false");
+            OnWrongAnswer();
+            PrintQuestion();
         }
+    }
+
+    void OnWrongAnswer()
+    {
+        questionCounter -= (questionCounter % 5 + 5);
+
+        if (questionCounter < 0)
+            questionCounter = 0;
+
+        circlesManager.InvisibleCircles();
     }
 }

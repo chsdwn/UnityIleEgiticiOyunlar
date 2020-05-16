@@ -14,7 +14,7 @@ public class CirclesManager : MonoBehaviour
         InvisibleCircles();
     }
 
-    void InvisibleCircles()
+    public void InvisibleCircles()
     {
         foreach (GameObject circle in circles)
         {
