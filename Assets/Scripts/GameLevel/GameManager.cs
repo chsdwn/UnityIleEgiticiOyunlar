@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private Text bottomTxt;
     [SerializeField]
     private GameObject pausePanel;
+    [SerializeField]
+    private Text scoreTxt;
 
     CirclesManager circlesManager;
     TimerManager timerManager;
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
     int bottomValue;
     int largeInt;
     int btnValue;
+    int score = 0;
+    int scoreIncrement;
 
     private void Awake()
     {
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
 
         topTxt.text = "";
         bottomTxt.text = "";
+        scoreTxt.text = "0";
 
         UpdateScene();
     }
@@ -72,17 +77,35 @@ public class GameManager : MonoBehaviour
     void PrintQuestion()
     {
         if (questionCounter < 5)
+        {
             questionIndex = 1;
+            scoreIncrement = 25;
+        }
         else if (questionCounter >= 5 && questionCounter < 10)
+        {
             questionIndex = 2;
+            scoreIncrement = 50;
+        }
         else if (questionCounter >= 10 && questionCounter < 15)
+        {
             questionIndex = 3;
+            scoreIncrement = 75;
+        }
         else if (questionCounter >= 15 && questionCounter < 20)
+        {
             questionIndex = 4;
+            scoreIncrement = 100;
+        }
         else if (questionCounter >= 20 && questionCounter < 25)
+        {
             questionIndex = 5;
+            scoreIncrement = 125;
+        }
         else
+        {
             questionIndex = Random.Range(1, 6);
+            scoreIncrement = 150;
+        }
 
         switch (questionIndex)
         {
@@ -251,6 +274,10 @@ public class GameManager : MonoBehaviour
 
             circlesManager.VisibleCircle(questionCounter % 5);
             questionCounter++;
+
+            score += scoreIncrement;
+
+            scoreTxt.text = score.ToString();
 
             PrintQuestion();
         }
