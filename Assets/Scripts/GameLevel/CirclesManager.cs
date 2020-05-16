@@ -25,5 +25,8 @@ public class CirclesManager : MonoBehaviour
     public void VisibleCircle(int circleIndex)
     {
         circles[circleIndex].GetComponent<RectTransform>().DOScale(1, 0.3f);
+
+        if (circleIndex % 5 == 0)
+            InvisibleCircles();
     }
 }

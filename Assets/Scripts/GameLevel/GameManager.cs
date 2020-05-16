@@ -117,6 +117,8 @@ public class GameManager : MonoBehaviour
         {
             circlesManager.VisibleCircle(questionCounter % 5);
             questionCounter++;
+
+            PrintQuestion();
         }
         else
         {
