@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
             questionIndex = 1;
         else if (questionCounter >= 5 && questionCounter < 10)
             questionIndex = 2;
+        else if (questionCounter >= 10 && questionCounter < 15)
+            questionIndex = 3;
 
         switch (questionIndex)
         {
@@ -79,6 +81,9 @@ public class GameManager : MonoBehaviour
                 break;
             case 2:
                 SecondQuestion();
+                break;
+            case 3:
+                ThirdQuestion();
                 break;
         }
     }
@@ -130,6 +135,31 @@ public class GameManager : MonoBehaviour
 
         topTxt.text = first + " + " + second;
         bottomTxt.text = third + " + " + fourth;
+    }
+
+    void ThirdQuestion()
+    {
+        int first = Random.Range(11, 30);
+        int second = Random.Range(1, 11);
+        int third = Random.Range(11, 40);
+        int fourth = Random.Range(1, 11);
+
+        topValue = first - second;
+        bottomValue = third - fourth;
+
+        if (topValue > bottomValue)
+            largeInt = topValue;
+        else if (bottomValue > topValue)
+            largeInt = bottomValue;
+
+        if (topValue == bottomValue)
+        {
+            ThirdQuestion();
+            return;
+        }
+
+        topTxt.text = first + " - " + second;
+        bottomTxt.text = third + " - " + fourth;
     }
 
     public void SelectAnswer(string btnName)
