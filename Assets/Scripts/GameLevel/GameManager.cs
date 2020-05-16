@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject pausePanel;
     [SerializeField]
+    private GameObject resultPanel;
+    [SerializeField]
     private Text scoreTxt;
 
     CirclesManager circlesManager;
@@ -303,5 +305,10 @@ public class GameManager : MonoBehaviour
     public void OpenPausePanel()
     {
         pausePanel.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        resultPanel.SetActive(true);
     }
 }

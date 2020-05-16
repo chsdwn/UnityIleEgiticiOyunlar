@@ -11,6 +11,13 @@ public class TimerManager : MonoBehaviour
     int timer;
     bool isTimerRun;
 
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = Object.FindObjectOfType<GameManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +41,12 @@ public class TimerManager : MonoBehaviour
             else
                 timerTxt.text = timer.ToString();
 
-            if (timer == 0)
+            if (timer <= 0)
             {
                 isTimerRun = false;
                 timerTxt.text = "00";
+
+                gameManager.GameOver();
             }
 
             timer--;
