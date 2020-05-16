@@ -73,6 +73,10 @@ public class GameManager : MonoBehaviour
             questionIndex = 2;
         else if (questionCounter >= 10 && questionCounter < 15)
             questionIndex = 3;
+        else if (questionCounter >= 15 && questionCounter < 20)
+            questionIndex = 4;
+        else if (questionCounter >= 20 && questionCounter < 25)
+            questionIndex = 5;
 
         switch (questionIndex)
         {
@@ -84,6 +88,12 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 ThirdQuestion();
+                break;
+            case 4:
+                FourthQuestion();
+                break;
+            case 5:
+                FifthQuestion();
                 break;
         }
     }
@@ -160,6 +170,56 @@ public class GameManager : MonoBehaviour
 
         topTxt.text = first + " - " + second;
         bottomTxt.text = third + " - " + fourth;
+    }
+
+    void FourthQuestion()
+    {
+        int first = Random.Range(1, 10);
+        int second = Random.Range(1, 10);
+        int third = Random.Range(1, 10);
+        int fourth = Random.Range(1, 10);
+
+        topValue = first * second;
+        bottomValue = third * fourth;
+
+        if (topValue > bottomValue)
+            largeInt = topValue;
+        else if (bottomValue > topValue)
+            largeInt = bottomValue;
+
+        if (topValue == bottomValue)
+        {
+            FourthQuestion();
+            return;
+        }
+
+        topTxt.text = first + " * " + second;
+        bottomTxt.text = third + " * " + fourth;
+    }
+
+    void FifthQuestion()
+    {
+        int divider1 = Random.Range(2, 10);
+        topValue = Random.Range(2, 10);
+        int dividend1 = topValue * divider1;
+
+        int divider2 = Random.Range(2, 10);
+        bottomValue = Random.Range(2, 10);
+        int dividend2 = bottomValue * divider2;
+
+        if (topValue > bottomValue)
+            largeInt = topValue;
+        else if (bottomValue > topValue)
+            largeInt = bottomValue;
+
+        if (topValue == bottomValue)
+        {
+            FifthQuestion();
+            return;
+        }
+
+        topTxt.text = dividend1 + " / " + divider1;
+        bottomTxt.text = dividend2 + " / " + divider2;
     }
 
     public void SelectAnswer(string btnName)
