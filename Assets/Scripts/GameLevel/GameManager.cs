@@ -41,15 +41,23 @@ public class GameManager : MonoBehaviour
     int correctCount;
     int wrongCount;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip startSound, gameOverSound, wrongSound, correctSound;
+
     private void Awake()
     {
         circlesManager = Object.FindObjectOfType<CirclesManager>();
         timerManager = Object.FindObjectOfType<TimerManager>();
         trueFalseManager = Object.FindObjectOfType<TrueFalseManager>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
+        audioSource.PlayOneShot(startSound);
+
         questionCounter = 0;
         questionIndex = 0;
 
@@ -286,6 +294,8 @@ public class GameManager : MonoBehaviour
 
             correctCount++;
 
+            audioSource.PlayOneShot(correctSound);
+
             PrintQuestion();
         }
         else
@@ -293,6 +303,8 @@ public class GameManager : MonoBehaviour
             trueFalseManager.VisibleIcon(false);
 
             wrongCount++;
+
+            audioSource.PlayOneShot(wrongSound);
 
             OnWrongAnswer();
             PrintQuestion();
@@ -317,6 +329,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         resultPanel.SetActive(true);
+
+        audioSource.PlayOneShot(gameOverSound);
 
         resultManager = Object.FindObjectOfType<ResultManager>();
         resultManager.ShowResult(correctCount, wrongCount, score);
