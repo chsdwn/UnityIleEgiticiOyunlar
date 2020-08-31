@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Text questionText, correctAnswerText, wrongAnswerText;
+    [SerializeField]
+    private GameObject trueButton, falseButton;
 
     List<Question> unansweredQuestions;
     int questionIndex;
@@ -79,6 +82,16 @@ public class GameManager : MonoBehaviour
             correctAnswerText.text = "YANLIŞ CEVAP";
             wrongAnswerText.text = "DOĞRU CEVAP";
         }
+    }
+
+    public void MoveTrueButton()
+    {
+        trueButton.GetComponent<RectTransform>().DOLocalMoveX(-1000f, .2f);
+    }
+
+    public void MoveFalseButton()
+    {
+        falseButton.GetComponent<RectTransform>().DOLocalMoveX(1000f, .2f);
     }
 
     IEnumerator WaitBetweenQuestionsRoutine()
