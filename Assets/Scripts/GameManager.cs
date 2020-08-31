@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public Question[] questions { get; private set; }
+
+    [SerializeField]
+    private Text questionText;
 
     List<Question> unansweredQuestions;
     int questionIndex;
@@ -26,11 +31,45 @@ public class GameManager : MonoBehaviour
             unansweredQuestions = questions.ToList();
         }
 
-        SetQuestionIndex();
+        PrintQuestion();
+    }
+
+    public void CheckAnswerIsCorrect(bool answer)
+    {
+        if (answer == unansweredQuestions[questionIndex].isCorrect)
+        {
+
+        }
+
+        StartCoroutine(WaitBetweenQuestionsRoutine());
     }
 
     void SetQuestionIndex()
     {
         questionIndex = Random.Range(0, unansweredQuestions.Count);
+    }
+
+    void PrintQuestion()
+    {
+        SetQuestionIndex();
+        questionText.text = unansweredQuestions[questionIndex].question;
+    }
+
+    void RemoveAnsweredQuestion()
+    {
+        unansweredQuestions.RemoveAt(questionIndex);
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator WaitBetweenQuestionsRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+
+        RemoveAnsweredQuestion();
+        LoadScene();
     }
 }
