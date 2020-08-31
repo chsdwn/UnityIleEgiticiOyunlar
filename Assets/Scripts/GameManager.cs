@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Question[] questions { get; private set; }
 
     [SerializeField]
-    private Text questionText;
+    private Text questionText, correctAnswerText, wrongAnswerText;
 
     List<Question> unansweredQuestions;
     int questionIndex;
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     void PrintQuestion()
     {
         SetQuestionIndex();
+        PrintResult();
+
         questionText.text = unansweredQuestions[questionIndex].question;
     }
 
@@ -63,6 +65,20 @@ public class GameManager : MonoBehaviour
     void LoadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void PrintResult()
+    {
+        if (unansweredQuestions[questionIndex].isCorrect)
+        {
+            correctAnswerText.text = "DOĞRU CEVAP";
+            wrongAnswerText.text = "YANLIŞ CEVAP";
+        }
+        else
+        {
+            correctAnswerText.text = "YANLIŞ CEVAP";
+            wrongAnswerText.text = "DOĞRU CEVAP";
+        }
     }
 
     IEnumerator WaitBetweenQuestionsRoutine()
